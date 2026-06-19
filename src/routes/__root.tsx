@@ -11,6 +11,11 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { ThemeProvider } from "@/components/theme-provider";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Disclaimer } from "@/components/disclaimer";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -77,11 +82,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Atlas — AI Workplace Productivity Assistant" },
+      {
+        name: "description",
+        content:
+          "Atlas is an AI workplace assistant that drafts emails, summarizes meetings, plans your week, and researches topics.",
+      },
+      { name: "author", content: "Atlas" },
+      { property: "og:title", content: "Atlas — AI Workplace Productivity Assistant" },
+      {
+        property: "og:description",
+        content:
+          "Draft emails, summarize meetings, plan your day, and research topics with AI.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -118,8 +131,20 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <ThemeProvider>
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <div className="flex min-h-svh flex-col">
+              <div className="flex-1 min-w-0">
+                <Outlet />
+              </div>
+              <Disclaimer />
+            </div>
+          </SidebarInset>
+          <Toaster richColors position="top-right" />
+        </SidebarProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

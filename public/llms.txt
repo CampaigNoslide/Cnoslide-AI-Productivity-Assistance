@@ -1,0 +1,11 @@
+# Atlas — AI Workplace Productivity Assistant
+
+> Atlas helps professionals draft emails, summarize meetings, plan their week, and research topics with AI.
+
+## Pages
+- [Dashboard](/): Productivity metrics and quick access to all AI tools.
+- [Smart Email Generator](/email): Draft professional emails in 4 tones.
+- [Meeting Summarizer](/summarize): Extract key points, decisions, action items, and deadlines.
+- [Task Planner](/planner): Build prioritized daily and weekly schedules.
+- [Research Assistant](/research): Summaries, trends, insights, and recommendations.
+- [AI Chatbot](/chat): Interactive workplace assistant.
