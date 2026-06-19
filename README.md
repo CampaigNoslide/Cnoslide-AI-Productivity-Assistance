@@ -61,5 +61,5 @@ Atlas is a full SaaS-style AI workplace assistant built with Lovable AI. It prov
 Clone the repository:
 
 ```bash
-git clone <your-repo-url>
+git clone <gh repo clone CampaigNoslide/Cnoslide-AI-Productivity-Assistance>
 cd atlas
