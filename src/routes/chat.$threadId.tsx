@@ -18,7 +18,7 @@ import {
   PromptInputSubmit,
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
-import { useChatCtx } from "./chat";
+import { useChatCtx } from "@/lib/chat-context";
 import { deriveTitle } from "@/lib/chat-storage";
 import { toast } from "sonner";
 

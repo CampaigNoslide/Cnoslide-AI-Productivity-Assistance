@@ -11,12 +11,7 @@ import {
   newThreadId,
   type ChatThread,
 } from "@/lib/chat-storage";
-
-type Ctx = {
-  threads: ChatThread[];
-  setThreads: (fn: (prev: ChatThread[]) => ChatThread[]) => void;
-  activeId: string | undefined;
-};
+import { ChatCtx, type ChatCtxValue } from "@/lib/chat-context";
 
 export const Route = createFileRoute("/chat")({
   head: () => ({
@@ -93,7 +88,7 @@ function ChatLayout() {
     }
   };
 
-  const ctx: Ctx = { threads, setThreads, activeId };
+  const ctx: ChatCtxValue = { threads, setThreads, activeId };
 
   return (
     <>
@@ -144,22 +139,11 @@ function ChatLayout() {
           </ScrollArea>
         </aside>
         <div className="flex min-w-0 flex-1 flex-col">
-          <ChatCtxProvider value={ctx}>
+          <ChatCtx.Provider value={ctx}>
             <Outlet />
-          </ChatCtxProvider>
+          </ChatCtx.Provider>
         </div>
       </div>
     </>
   );
-}
-
-import { createContext, useContext } from "react";
-const ChatCtx = createContext<Ctx | null>(null);
-function ChatCtxProvider({ value, children }: { value: Ctx; children: React.ReactNode }) {
-  return <ChatCtx.Provider value={value}>{children}</ChatCtx.Provider>;
-}
-export function useChatCtx() {
-  const c = useContext(ChatCtx);
-  if (!c) throw new Error("useChatCtx must be used inside /chat layout");
-  return c;
 }
